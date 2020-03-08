@@ -8,6 +8,10 @@ import java.util.List;
  * 20:06 2020/2/26
  */
 public class ListGenericTest {
+	/**
+	 * 集合泛型操作
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		List<Integer> intList = new ArrayList<>();
 		List<Number> numberList = new ArrayList<>();
@@ -31,7 +35,8 @@ public class ListGenericTest {
 	}
 
 	public static void getData(List<?> data){
-		data.stream().forEach(e -> System.out.println(e));
+		data.forEach(System.out::println);
+//		data.stream().forEach(e -> System.out.println(e));
 	}
 	/**
 	 * data参数指定的泛型只能为Number类型或它的子类
