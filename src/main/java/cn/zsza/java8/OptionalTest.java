@@ -3,6 +3,10 @@ package cn.zsza.java8;
 import cn.zsza.domain.User;
 import static org.junit.Assert.*;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 public class OptionalTest {
@@ -38,6 +42,20 @@ public class OptionalTest {
         }
     }
     /**
+     * ifPresent()方法
+     */
+    @Test
+    public void test3(){
+        User user = new User();
+        user.setId(11);
+        user.setName("mike");
+
+        Optional<User> usrOpt = Optional.ofNullable(user);
+        List<User> userList = new ArrayList<>();
+        usrOpt.ifPresent(e -> userList.add(e));
+        System.out.println(userList);
+    }
+    /**
      * orElse()方法,如果strOpt对象不为空,则返回strOpt的内容,否则返回orElse()对象的值
      */
     @Test
@@ -46,6 +64,10 @@ public class OptionalTest {
         String res = strOpt.orElse("kelly");
         System.out.println(res);
     }
+    /**
+     * userOpt.map(User::getName)返回一个Optional对象,后面可以继续连接map，组成链式操作
+     *
+     */
     @Test
     public void testChain(){
         User user = new User();
@@ -58,5 +80,16 @@ public class OptionalTest {
         String defaultName = userOpt.map(User::getName)
                 .map(String::toUpperCase).orElse("default Name");
         System.out.println(defaultName);
+    }
+    /**
+     * flatMap操作和Stream中的flatMap操作类似
+     */
+    @Test
+    public void testFlatMap(){
+        Optional<String> male = Optional.of("male");
+        Optional<Optional<String>> maleOpt = Optional.of(male);
+
+        Optional<String> resultOpt = maleOpt.flatMap(e -> e.map(String::toUpperCase));
+        System.out.println(resultOpt.get());
     }
 }
