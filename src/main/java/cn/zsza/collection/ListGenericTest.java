@@ -1,6 +1,9 @@
 package cn.zsza.collection;
 
+import cn.zsza.domain.U;
+import cn.zsza.domain.User;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -32,6 +35,17 @@ public class ListGenericTest {
 		strList.add("yy");
 
 		getData(strList);
+
+		System.out.println("**************分隔符*************");
+
+		U u1 = new U();
+		u1.setId(11);
+
+		U u2 = new U();
+		u2.setId(12);
+
+		printObjectList(Arrays.asList(u1, u2));
+
 	}
 
 	public static void getData(List<?> data){
@@ -44,5 +58,12 @@ public class ListGenericTest {
 	 */
 	public static void getUperNumber(List<? extends Number> data){
 		data.stream().forEach(e -> System.out.println(e));
+	}
+	/**
+	 * list参数指定的泛型只能为User类型或它的父类
+	 * @param list
+	 */
+	public static void printObjectList(List<? super User> list){
+		list.stream().forEach(e -> System.out.println(e));
 	}
 }

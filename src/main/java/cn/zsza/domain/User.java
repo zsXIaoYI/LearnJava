@@ -4,8 +4,7 @@ package cn.zsza.domain;
 import lombok.Data;
 
 @Data
-public class User {
-    private Integer id;
+public class User extends U {
 
     private String name;
 }
