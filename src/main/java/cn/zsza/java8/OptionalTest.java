@@ -19,6 +19,7 @@ public class OptionalTest {
         System.out.println(opt2);
     }
     /**
+     * 当接收的参数不确定是否为null时,用ofNullable()
      * ofNullable()接收一个User对象,如果User对象不为null,则以下业务逻辑能顺利执行;
      * 为了防止获取User对象的名字,则用nameOpt.isPresent()加以判断
      */
@@ -35,5 +36,27 @@ public class OptionalTest {
         if (nameOpt.isPresent()){
             assertEquals("小白",nameOpt.get());
         }
+    }
+    /**
+     * orElse()方法,如果strOpt对象不为空,则返回strOpt的内容,否则返回orElse()对象的值
+     */
+    @Test
+    public void testOrElse(){
+        Optional<String> strOpt = Optional.ofNullable("hello");
+        String res = strOpt.orElse("kelly");
+        System.out.println(res);
+    }
+    @Test
+    public void testChain(){
+        User user = new User();
+        user.setId(123);
+        user.setName("jack");
+        /**
+         * 当user对象为null时,则返回default Name
+         */
+        Optional<User> userOpt = Optional.ofNullable(user);
+        String defaultName = userOpt.map(User::getName)
+                .map(String::toUpperCase).orElse("default Name");
+        System.out.println(defaultName);
     }
 }
