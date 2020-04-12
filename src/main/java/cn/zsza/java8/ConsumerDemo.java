@@ -1,5 +1,6 @@
 package cn.zsza.java8;
 
+import cn.zsza.domain.Student;
 import org.junit.Test;
 import java.util.Arrays;
 import java.util.List;
@@ -32,6 +33,39 @@ public class ConsumerDemo {
         System.out.println("遍历intList:");
         intList.stream().forEach(e -> intConsumer.accept(e));
     }
+
+    /**
+     * 一个List存放Student对象,然后给每个学生的成绩加2分
+     */
+    @Test
+    public void test3(){
+        Student stu1 = new Student();
+        stu1.setName("小红");
+        stu1.setId(122);
+        stu1.setScore(88);
+
+        Student stu2 = new Student();
+        stu2.setName("小白");
+        stu2.setId(123);
+        stu2.setScore(78);
+
+        List<Student> studentList = Arrays.asList(stu1, stu2);
+        System.out.println("before consumer studentList:" + studentList);
+
+        // java8之前的实现
+        System.out.println("before java8...");
+        for(Student stu: studentList){
+            stu.setScore(stu.getScore() + 2);
+        }
+        // java8的实现
+        Consumer<Student> stuConsumer = stu -> stu.setScore(stu.getScore() + 2);
+        studentList.stream().forEach(stu -> stuConsumer.accept(stu));
+
+        // 上面两行代码等同于下面一行
+//        studentList.stream().forEach(stu -> stu.setScore(stu.getScore() + 2));
+        System.out.println("after consumer studentList:" + studentList);
+    }
+
     /**
      * 对list中元素进行遍历操作的方法
      * @param list
