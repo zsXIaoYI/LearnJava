@@ -2,9 +2,7 @@ package cn.zsza.java8;
 
 import org.junit.Test;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -13,6 +11,17 @@ import java.util.stream.Collectors;
  * Author: zs
  */
 public class StreamTest {
+
+    @Test
+    public void testSorted(){
+        List<Integer> list = Arrays.asList(5, 3, 6, 2, 8);
+        List<Integer> newList = list.stream()
+                .sorted(Comparator.comparing(Integer::intValue))
+                .collect(Collectors.toList());
+
+        System.out.println(newList);
+
+    }
     /**
      * list中元素是用逗号分隔的字符串,然后拆分各个元素组成一个Set
      */
