@@ -12,6 +12,19 @@ import java.util.stream.Stream;
  * Author: zs
  */
 public class StreamTest {
+    /**
+     * 1、anyMatch()：任意一个满足Predicate表达式，则返回true
+     * 2、allMatch()：所有的元素满足Predicate表达式，则返回true
+     */
+    @Test
+    public void testMatch(){
+        List<Integer> list = Arrays.asList(3, 4, 6, 12, 20);
+        boolean result = list.stream().anyMatch(e -> (e * (e + 1) / 4 == 5));
+        System.out.println(result);
+
+        boolean result2 = list.stream().allMatch(e -> e >= 2);
+        System.out.println(result2);
+    }
 
     @Test
     public void testSorted(){
@@ -68,7 +81,5 @@ public class StreamTest {
                 .add(3).build();
 
         stream2.forEach(System.out::println);
-
-
     }
 }
