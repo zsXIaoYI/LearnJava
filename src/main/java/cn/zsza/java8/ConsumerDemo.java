@@ -17,7 +17,8 @@ public class ConsumerDemo {
      */
     @Test
     public void test1(){
-        Consumer<String> print = str -> System.out.println(str);
+        // Consumer<String> print = str -> System.out.println(str);
+        Consumer<String> print = System.out::println;
         print.accept("hello.ketty");
 
         Consumer<String> printLen = str -> System.out.println("字符串长度:" + str.length());
@@ -32,6 +33,8 @@ public class ConsumerDemo {
         Consumer<Integer> intConsumer = x -> System.out.println(x);
         System.out.println("遍历intList:");
         intList.stream().forEach(e -> intConsumer.accept(e));
+        // 上面代码可以简写成如下
+        intList.forEach(intConsumer);
     }
 
     /**
