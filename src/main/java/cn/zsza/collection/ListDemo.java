@@ -20,14 +20,9 @@ public class ListDemo {
         List<Integer> resultList = new ArrayList<>();
 
         int temp = 0;
-        for (int i = 0; i < list.size(); i++){
-            Integer ele = list.get(i);
+        for (Integer ele : list) {
             temp += ele;
-            if (i == 0){
-                resultList.add(ele);
-            }else {
-                resultList.add(temp);
-            }
+            resultList.add(temp);
         }
         System.out.println(resultList);
     }
