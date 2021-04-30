@@ -59,7 +59,7 @@ public class LambdaTest {
      */
     public static <T,R> List<R> map(List<T> list, Function<T,R> f){
         List<R> result = new ArrayList<>();
-        list.stream().forEach(l -> result.add(f.apply(l)));
+        list.forEach(l -> result.add(f.apply(l)));
         return result;
     }
 }
